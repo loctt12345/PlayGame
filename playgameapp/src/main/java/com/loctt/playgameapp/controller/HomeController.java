@@ -5,18 +5,15 @@
  */
 package com.loctt.playgameapp.controller;
 
-import com.loctt.playgameapp.model.CurrentUser;
 import com.loctt.playgameapp.model.Message;
 import com.loctt.playgameapp.model.MessageOutput;
 import com.loctt.playgameapp.service.MessageService;
 import com.loctt.playgameapp.utils.BadWordChecker;
-import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
-import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +27,6 @@ public class HomeController {
 
     @Autowired
     private MessageService messageService;
-    @Autowired
-    private CurrentUser currentUser;
 
     @RequestMapping("/")
     public String home(Model model, HttpSession session) {
@@ -55,5 +50,5 @@ public class HomeController {
         );
         return dto;
     }
-
+    
 }

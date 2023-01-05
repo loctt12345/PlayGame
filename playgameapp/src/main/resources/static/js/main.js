@@ -19,6 +19,9 @@ function sendMessage() {
 
     let input = document.getElementById("comment");
     let message = input.value;
+    if (message === "") {
+        return;
+    }
     input.value = "";
     let name = document.getElementById("name");
     client.send('/app/chat', {}, JSON.stringify({text: message, from: name.value}));
@@ -35,7 +38,7 @@ function getAllMessageHeight() {
 }
 
 function addMessage(name, text) {
-        let message_list = document.getElementById('message_list');
+    let message_list = document.getElementById('message_list');
 
     message_list.innerHTML = message_list.innerHTML +
             `<div id="message${++i}" 
@@ -44,13 +47,13 @@ class="bg-primary text-light col-md-9 message" style="visibility:hidden">
                     &nbsp ${text}        
                  </div>`;
 
-                 
+
     while (getAllMessageHeight() >= 270) {
         let allMessages = document.getElementsByClassName("message");
         document.getElementById(allMessages[0].id).remove();
     }
-    
-    document.getElementById("message"+i).style.visibility = "visible";
+
+    document.getElementById("message" + i).style.visibility = "visible";
 }
 
 document.getElementById("comment")
@@ -72,4 +75,22 @@ function getMessages() {
                 });
             }
     );
+    let name = document.getElementById("name").value;
+    if (name === "")
+        name = "Anonymous";
+    document.getElementById("nameHeader").innerHTML = `-${name}`;
+}
+
+function getName() {
+    let name = document.getElementById("name").value;
+    fetch('/api/message', {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({name: name})
+    }).then(response => response.json()).then(data => {
+        let name = data.name;
+        if (name === "")
+            name = "Anonymous";
+        document.getElementById("nameHeader").innerHTML = `-${name}`;
+    });
 }
