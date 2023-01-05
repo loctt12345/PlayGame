@@ -1,0 +1,35 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 3, 2023, 9:49:03 AM
+    Author     : loc12345
+*/
+
+.chat-frame {
+    height: 400px;
+    padding: 2%;
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+}
+
+.chat-frame > div {
+    padding : 2%;
+}
+
+.chat-box {
+    padding: 20px;
+}
+
+.message {
+    margin-top: 5px;
+    border-radius: 2%;
+     word-wrap: break-word;
+}
+
+#name{
+    margin-right: 20px; 
+}
+
